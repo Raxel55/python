@@ -45,3 +45,4 @@ for k,v in group_and_uid.items():
 
 file = open(path_to_output,'a')
 file.write(group_and_uid_str+'\n')
+file.close()
