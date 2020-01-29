@@ -12,8 +12,6 @@ def fib(n):
     return b
 
 
-print(fib(1))
-print(fib(2))
-print(fib(3))
-print(fib(4))
-print(fib(5))
+for j in range(1,9):
+    print(fib(j))
+
