@@ -29,16 +29,30 @@ file.close()
 groups = []
 users = []
 for line in group:
-	groups.append(line.split(':')[2::-2])
+	groups.append(line.split(':'))
 for line in passwd:
-	users.append(line.split(':')[2:4])
-groups = dict(groups)
-group_and_uid = {}
+	users.append(line.split(':')[:4])
+
+name_to_uid = {'':''}
+gid_to_groupname = dict()
 for u in users:
-	if groups[u[1]] not in group_and_uid:
-		group_and_uid[groups[u[1]]] = [u[0]]
-	else:
-		group_and_uid[groups[u[1]]].append(u[0])
+    name_to_uid[u[0]] = u[2]
+for g in groups:
+    gid_to_groupname[g[2]] = g[0]
+
+group_and_uid = {}
+for g in groups:
+    group_and_uid[g[0]] = g[3].strip().split(',')
+    for i in range(len(group_and_uid[g[0]])):
+        group_and_uid[g[0]][i] = name_to_uid[group_and_uid[g[0]][i]]
+
+for u in users:
+    if group_and_uid[gid_to_groupname[u[3]]] == ['']:
+        group_and_uid[gid_to_groupname[u[3]]] = [u[2]]
+    else:
+        if u[2] not in group_and_uid[gid_to_groupname[u[3]]]:
+            group_and_uid[gid_to_groupname[u[3]]].append(u[2])
+
 group_and_uid_str = ''
 for k,v in group_and_uid.items():
 	group_and_uid_str+='%s:%s, '%(k,','.join(v))
