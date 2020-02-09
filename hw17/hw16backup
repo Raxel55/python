@@ -1,12 +1,11 @@
 #! /usr/bin/env python3
-import sys
 import json
 import requests
 
 '''Для геокодинга использовался сервис Яндекса, потому что он не требует привязки банковской карты'''
 #Функция для отправки запроса
 def geocode(coords):
-    #Для запроса в яндекс фомат координат следующий: (долгота, широта)
+    #координаты в Google и Яндекс задаются в разном порядке
     params = {'apikey':'1250aca0-5dfe-4a29-9a38-711ffec8943c', 'format':'json', 'geocode':coords[::-1]} 
     params_str = '&'.join([str(key)+'='+str(value) for key,value in params.items()])
     url = requests.utils.urlunparse(('https', 'geocode-maps.yandex.ru', '1.x', None, params_str, None))
@@ -55,7 +54,7 @@ def get_url_to_google_maps(coords):
 #Прочитать с файла и запустить
 def read_from_file_and_run(path):
     coords = get_coordinates_from_file(path)
-    return run(coords)
+    run(coords)
 
 #Контроллер
 def run(coords):
@@ -68,4 +67,4 @@ def run(coords):
             return "Bad request"
 
 if __name__ == '__main__':
-    print(read_from_file_and_run(sys.argv[1]))
+    print(read_from_file_and_run('coordinates'))
