@@ -1,0 +1,7 @@
+Usage:
+./hw18.py <size> <filename>
+
+Example:
+./hw18.py 128 3.jpg
+Result:
+thumb-3.jpg
