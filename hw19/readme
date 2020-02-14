@@ -1,0 +1,4 @@
+Server saves DNS-records in file dns_data.pickle 
+
+For test server and client locally use:
+./hw19.py & client.py
