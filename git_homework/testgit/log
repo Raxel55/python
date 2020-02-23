@@ -1,0 +1,11 @@
+#! /bin/bash
+echo ""
+echo "1git:"
+cd 1git/ && git log  --oneline && cd ../
+echo ""
+echo "2git:"
+cd 2git/ && git log  --oneline && cd ../
+echo ""
+echo "3git:"
+cd 3git/ && git log  --oneline && cd ../
+echo ""

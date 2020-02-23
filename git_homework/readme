@@ -1,0 +1,9 @@
+For creating 2 or more commits with similar hashes we need to use environment variables
+
+Example:
+1. do similar changes in both repos and use git add *
+2. use GIT_AUTHOR_DATE="2020.02.23 16:45" GIT_COMMITTER_DATE="2020.02.23 16:45" \
+       git commit -m "my commit"
+3. done
+
+Another way is making commits in one command

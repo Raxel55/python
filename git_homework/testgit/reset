@@ -1,0 +1,5 @@
+#! /bin/bash
+rm -rf 2git 3git
+mkdir 2git 3git
+cd 2git && git clone ../1git . && cd ..
+cd 3git && git clone ../1git . && cd ..
